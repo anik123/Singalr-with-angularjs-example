@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>Chat Me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/toaster.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div data-ng-controller="chatCtrl" class="container">
+        <div class="row pad-top pad-bottom">
+
+
+            <div class=" col-lg-5 col-md-5 col-sm-5">
+                <div class="chat-box-div">
+                    <div class="chat-box-head">
+                        GROUP CHAT HISTORY
+                            <div class="btn-group pull-right">
+                                <button style="margin-top: -7px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="fa fa-cogs"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#"><span class="fa fa-map-marker"></span>&nbsp;Invisible</a></li>
+                                    <li><a href="#"><span class="fa fa-comments-o"></span>&nbsp;Online</a></li>
+                                    <li><a href="#"><span class="fa fa-lock"></span>&nbsp;Busy</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><span class="fa fa-circle-o-notch"></span>&nbsp;Logout</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="panel-body chat-box-main" keep-scroll>
+                        <div ng-repeat="msg in messageList" scroll-item style="width: 100%">
+                            <div class="chat-box-left">
+                                {{msg.message}}
+                            </div>
+                            <div class="chat-box-name-left">
+                                <img src="img/user.png" alt="bootstrap Chat box user image" class="img-circle" />
+                                -  {{msg.username}}
+                            </div>
+                            <hr class="hr-clas" />
+                        </div>
+
+                    </div>
+                    <div class="chat-box-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-hide="user.isActive" data-ng-model="user.username" placeholder="Please type username">
+                            <input type="text" class="form-control" data-ng-show="user.isActive" data-ng-model="user.message" placeholder="Enter Text Here...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" ng-click="manageMessage()">{{user.button}}</button>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="Scripts/jquery-2.1.3.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="Scripts/toastr.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/directive/scroll.js"></script>
+    <script src="app/Service/chatSvc.js"></script>
+    <script src="app/Controller/chatCtrl.js"></script>
+
+
+</body>
+</html>
